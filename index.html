@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sivasankar S — Legal Professional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1208;
+      --parchment: #f5f0e8;
+      --cream: #faf7f2;
+      --gold: #b8860b;
+      --gold-light: #d4a843;
+      --rust: #8b3a2a;
+      --muted: #7a6e5f;
+      --line: rgba(184,134,11,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 15%, rgba(184,134,11,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 70% at 92% 80%, rgba(139,58,42,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 55% 45% at 60% 40%, rgba(184,134,11,0.05) 0%, transparent 60%),
+        #faf7f2;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.7;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(184,134,11,0.028) 40px,
+        rgba(184,134,11,0.028) 41px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: 'LAW';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-size: 22vw;
+      font-weight: 300;
+      color: rgba(184,134,11,0.06);
+      letter-spacing: 0.1em;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .hero-content { max-width: 780px; animation: fadeUp 1s ease both; }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary { background: var(--gold); color: #fff; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--line);
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .stat-num { font-size: 2.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+    }
+
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; letter-spacing: -0.01em; }
+    h2 em { font-style: italic; color: var(--gold); }
+
+    .section-line { flex: 1; height: 1px; background: var(--line); }
+
+    .edu-grid { display: grid; gap: 2px; }
+
+    .edu-card {
+      padding: 2rem 2.5rem;
+      background: var(--parchment);
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .edu-card:hover { border-left-color: var(--gold); transform: translateX(8px); }
+
+    .edu-degree { font-size: 1.35rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .edu-school { font-size: 1rem; color: var(--muted); font-style: italic; }
+
+    .edu-meta { display: flex; gap: 2rem; margin-top: 0.8rem; flex-wrap: wrap; }
+
+    .edu-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.8rem;
+      background: rgba(184,134,11,0.12);
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .exp-list { display: grid; gap: 3rem; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-org { font-size: 1.1rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.5rem; }
+
+    .exp-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .exp-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 0.2rem 0.6rem;
+    }
+
+    .exp-right ul { list-style: none; display: grid; gap: 0.8rem; }
+
+    .exp-right li {
+      font-size: 1rem;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      color: #3a3028;
+    }
+
+    .exp-right li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .pub-card { background: var(--cream); padding: 2.5rem; transition: background 0.3s; }
+    .pub-card:hover { background: var(--parchment); }
+
+    .pub-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 2rem;
+      color: rgba(184,134,11,0.2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .pub-title { font-size: 1.05rem; font-weight: 400; line-height: 1.5; }
+
+    .pub-pub {
+      margin-top: 0.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+    .list-block h3 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--gold);
+    }
+
+    .list-block ul { list-style: none; display: grid; gap: 0.7rem; }
+
+    .list-block li { font-size: 1rem; padding-left: 1.2rem; position: relative; }
+
+    .list-block li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      font-size: 0.4rem;
+      top: 0.55rem;
+      color: var(--gold);
+    }
+
+    .contact-strip {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 5rem 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-strip h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; margin-bottom: 2rem; }
+    .contact-strip h2 em { color: var(--gold-light); }
+
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,168,67,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .contact-links a:hover { border-color: var(--gold-light); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider {
+      width: calc(100% - 8rem);
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .contact-strip { padding: 3rem 1.5rem; }
+      .divider { margin: 0 1.5rem; width: calc(100% - 3rem); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">S. Sivasankar</div>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%;padding-top:8rem">
+  <div class="hero-content">
+    <div class="hero-tag">BCom LLB (Hons.) · SASTRA University · 2026</div>
+    <h1>Sivasankar<br /><em>S.</em></h1>
+    <p class="hero-sub">Corporate & transactional lawyer in training — specialising in M&A, arbitration, intellectual property, and regulatory compliance.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8.69</div>
+        <div class="stat-label">CGPA / 10</div>
+      </div>
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div>
+        <div class="stat-num">5th</div>
+        <div class="stat-label">Year of Study</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2><em>Education</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">BCom LLB (Hons.)</div>
+      <div class="edu-school">SASTRA Deemed University, Thanjavur, Tamil Nadu</div>
+      <div class="edu-meta">
+        <span class="edu-badge">Expected 2026</span>
+        <span class="edu-badge">CGPA 8.69 / 10</span>
+        <span class="edu-badge">5th Year</span>
+      </div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">Class XII — 94.45%</div>
+      <div class="edu-school">Saradha Matriculation Hr. Sec. School, Gingee, Villupuram, Tamil Nadu</div>
+      <div class="edu-meta"><span class="edu-badge">2021</span></div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">Class X — 89%</div>
+      <div class="edu-school">Maharishi International Residential School, Kanchipuram, Tamil Nadu (CBSE)</div>
+      <div class="edu-meta"><span class="edu-badge">2019</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="transactional">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2>Transactional <em>Exposure</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">Latham &amp; Watkins LLP</div>
+        <div class="exp-period">Mar – Apr 2025</div>
+        <div class="exp-tag">Virtual Experience</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Worked on a Triangular Merger for a Drug &amp; Pharma client; analyzed three key customer contracts and their implications on drafting a merger agreement.</li>
+          <li>Conducted due diligence focusing on risk allocation and structuring a mock acquisition agreement.</li>
+          <li>Provided board advisory on the emergence of a new bidder; prepared a presentation reviewing NDAs and earn-out provisions in the Sale &amp; Purchase Agreement.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2>Internship <em>Experience</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">Larsen &amp; Toubro</div>
+        <div class="exp-period">Dec 2025 – Jan 2026</div>
+        <div class="exp-tag">Chennai</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Prepared a compliance checklist on the DPDP Act 2023 and IT Rules, outlining scope, exemptions, and corporate requirements.</li>
+          <li>Delivered a clause-wise analytical brief on FIDIC contracts covering risk allocation, payment mechanisms, and dispute provisions.</li>
+          <li>Submitted compliance checklist for SPV, JV, consortium, and CSR-funded agreements including tax implications.</li>
+          <li>Drafted a legal opinion on Power of Attorney execution under Sections 21 &amp; 22 of the Companies Act 2013.</li>
+          <li>Reviewed a statutory impact matrix for an EPC contract identifying all applicable laws and regulatory authorities.</li>
+          <li>Assisted in arbitration research analyzing ICC and SIAC rules and cross-border conflicts between GDPR and DPDPA 2023.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">AKR &amp; Associates</div>
+        <div class="exp-period">Jun – Jul 2025</div>
+        <div class="exp-tag">Chennai</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Assisted on a Trade Mark infringement dispute for a Hong Kong-based client, advising on injunctive relief and passing-off without registered TM in India.</li>
+          <li>Researched regulatory approvals and compliances for infrastructure projects in the Union Territory of Puducherry.</li>
+          <li>Drafted execution petitions, written statements, and applications to set aside ex-parte orders.</li>
+          <li>Conducted case law research on arbitration in connection with a disputed Football Association election.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">Mr. R. Sankaranarayanan</div>
+        <div class="exp-period">Jul 2024</div>
+        <div class="exp-tag">Former ASG, Madras HC</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Drafted arbitration awards in construction and property disputes under the Arbitration and Conciliation Act 1996.</li>
+          <li>Conducted legal research on the Companies Act 2013, CPC 1908, and Indian Contract Act 1872.</li>
+          <li>Reviewed shareholder agreements identifying contractual obligations and dispute triggers.</li>
+          <li>Observed proceedings before the Madras High Court and NCLAT.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">Hon'ble Justice P.B. Balaji</div>
+        <div class="exp-period">Jan – Feb 2024</div>
+        <div class="exp-tag">Madras High Court</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Researched civil and property issues appearing before the Hon'ble Judge.</li>
+          <li>Analyzed manufacturing process classification in the Crane betel nuts tariff case.</li>
+          <li>Submitted analysis on exceptions to Sections 91–92 of the Indian Evidence Act and the doctrine of sub silentio.</li>
+          <li>Assisted in preparing lecture materials on "CPC 1908 — The Road Less Traveled."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">T.M. Hariharan, Senior Advocate</div>
+        <div class="exp-period">Jul 2023 &amp; Jan–Feb 2023</div>
+        <div class="exp-tag">Chennai</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Examined issues, identified legal loopholes, and determined applicable statutory provisions in civil and property law matters.</li>
+          <li>Assisted senior counsel in court proceedings and petition filing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">Percept Law Firm</div>
+        <div class="exp-period">Oct – Nov 2022</div>
+        <div class="exp-tag">Corporate Law</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Assisted in matters relating to company incorporation and corporate documentation.</li>
+          <li>Gained exposure to corporate compliance procedures and transaction workflows.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-org">R. Sivaraman, Advocate &amp; Notary</div>
+        <div class="exp-period">Jul – Aug 2022</div>
+        <div class="exp-tag">Puducherry</div>
+      </div>
+      <div class="exp-right">
+        <ul>
+          <li>Examined real estate documents including sale deeds, gift deeds, power of attorney, and encumbrance certificates.</li>
+          <li>Assisted in verifying factual and legal accuracy of commercial and property documentation.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="publications">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2><em>Publications</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="pub-grid">
+    <div class="pub-card reveal">
+      <div class="pub-num">01</div>
+      <div class="pub-title">Demystifying the Dark Side of AI in Business</div>
+      <div class="pub-pub">IGI Global</div>
+    </div>
+    <div class="pub-card reveal">
+      <div class="pub-num">02</div>
+      <div class="pub-title">Non-Legislation of Trade Secrets in India</div>
+      <div class="pub-pub">IJRAR · IJRAR23D2337</div>
+    </div>
+    <div class="pub-card reveal">
+      <div class="pub-num">03</div>
+      <div class="pub-title">Civil and Criminal Liability of Artificial Intelligence: Re-thinking Mens Rea and Legal Personhood</div>
+      <div class="pub-pub">IJLLR</div>
+    </div>
+    <div class="pub-card reveal">
+      <div class="pub-num">04</div>
+      <div class="pub-title">Protections for Game Developers, Designers and Creators: Recognition of Economic Rights in Indian Gaming Law</div>
+      <div class="pub-pub">IJIRL</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="extras">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2>Affiliations &amp; <em>Achievements</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="two-col">
+    <div class="list-block reveal">
+      <h3>Affiliations</h3>
+      <ul>
+        <li>Young ICCA — Since June 2025</li>
+        <li>WIPO ADR Young — Since August 2025</li>
+      </ul>
+    </div>
+    <div class="list-block reveal">
+      <h3>Moot Court Achievements</h3>
+      <ul>
+        <li>Quarter Finalist — 1st Sankhla &amp; Associates National Moot Court Competition</li>
+        <li>Quarter Finalist — Connaissance Moot Court Competition, SASTRA University</li>
+        <li>Runners-Up — SASTRA University Quiz Event</li>
+      </ul>
+    </div>
+    <div class="list-block reveal">
+      <h3>Certifications</h3>
+      <ul>
+        <li>General Corporate Laws — The Amikus Qriae</li>
+        <li>Company Secretary Course — Intermediate (Pursuing)</li>
+        <li>Research Methodology — SWAYAM (94%)</li>
+        <li>International Conference on Digital Transformation — Mittal School of Business, LPU</li>
+      </ul>
+    </div>
+    <div class="list-block reveal">
+      <h3>Practice Areas</h3>
+      <ul>
+        <li>Mergers &amp; Acquisitions</li>
+        <li>Arbitration &amp; Dispute Resolution</li>
+        <li>Intellectual Property</li>
+        <li>Corporate Compliance &amp; Regulatory</li>
+        <li>Data Protection (DPDPA / GDPR)</li>
+        <li>Real Estate &amp; Property Law</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <h2>Let's <em>Connect</em></h2>
+  <p style="font-size:1.1rem;color:rgba(245,240,232,0.65);font-weight:300;">Open to internships, research collaborations, and opportunities in corporate &amp; transactional law.</p>
+  <div class="contact-links">
+    <a href="mailto:indsiva2004@gmail.com">indsiva2004@gmail.com</a>
+    <a href="tel:+918610766367">+91 86107 66367</a>
+    <a href="https://www.linkedin.com/in/dsiva2004" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  © 2026 Sivasankar S. — BCom LLB (Hons.), SASTRA Deemed University
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.exp-item.reveal, .edu-card.reveal, .pub-card.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.07}s`;
+  });
+</script>
+</body>
+</html>
